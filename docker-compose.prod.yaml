@@ -1,15 +1,8 @@
 version: '3.8'
 services:
   app:
-    environment:
-      - MYSQL_DATABASE=material_construcao_prod
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=159753
-      - MYSQL_ROOT_PASSWORD=!%(&%#LealDev
-
+    env_file:
+      - .env.prod
   mysql:
-    environment:
-      - MYSQL_DATABASE=material_construcao_prod
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=159753
-      - MYSQL_ROOT_PASSWORD=!%(&%#LealDev
+    env_file:
+      - .env.prod

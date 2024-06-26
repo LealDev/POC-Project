@@ -1,15 +1,8 @@
 version: '3.8'
 services:
   app:
-    environment:
-      - MYSQL_DATABASE=material_construcao_homo
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=123
-      - MYSQL_ROOT_PASSWORD=159753
-
+    env_file:
+      - .env.homo
   mysql:
-    environment:
-      - MYSQL_DATABASE=material_construcao_homo
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=123
-      - MYSQL_ROOT_PASSWORD=159753
+    env_file:
+      - .env.homo

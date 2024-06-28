@@ -6,14 +6,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}
       - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
       - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
       - mysql
     networks:
       - app-network
-    command: ["sh", "-c", "while ! nc -z mysql 3306 ; do sleep 1 ; done && java -jar app.jar"]
+    command: ["sh", "-c", "while ! nc -z mysql ${MYSQL_PORT} ; do sleep 1 ; done && java -jar app.jar"]
 
   mysql:
     image: mysql:8.0
@@ -21,6 +21,11 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     networks:
       - app-network
 

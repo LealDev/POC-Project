@@ -1,2 +1,1 @@
-#!/bin/bash
-docker-compose -f docker-compose.yaml -f docker-compose.homo.yaml up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.homo.yml up -d --build

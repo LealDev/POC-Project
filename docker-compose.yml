@@ -6,7 +6,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
       - SPRING_DATASOURCE_URL=jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}
       - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
       - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
@@ -14,10 +13,10 @@ services:
       - mysql
     networks:
       - app-network
-    command: ["sh", "-c", "while ! nc -z mysql ${MYSQL_PORT} ; do sleep 10000 ; done && java -jar app.jar"]
+    command: ["sh", "-c", "while ! nc -z mysql ${MYSQL_PORT} ; do sleep 1 ; done && java -jar app.jar"]
 
   mysql:
-    image: mysql:8.0
+    build: ./mysql
     ports:
       - "3307:3306"
     volumes:

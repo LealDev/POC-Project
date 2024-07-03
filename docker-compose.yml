@@ -16,7 +16,7 @@ services:
     command: ["sh", "-c", "while ! nc -z mysql ${MYSQL_PORT} ; do sleep 1 ; done && java -jar app.jar"]
 
   mysql:
-    build: ./mysql
+    image: mysql:8.0
     ports:
       - "3307:3306"
     volumes:
